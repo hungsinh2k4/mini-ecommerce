@@ -6,13 +6,13 @@ import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 
 @Module({
+  // Configure modules
   imports: [
-    // Cấu hình để đọc file .env
     ConfigModule.forRoot({
-      isGlobal: true, // Để dùng được biến môi trường ở mọi nơi
+      isGlobal: true, 
     }),
-    
-    // Kết nối MongoDB bất đồng bộ (chờ đọc xong .env mới connect)
+
+    // Connect to MongoDB using Mongoose and ConfigService
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
